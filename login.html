@@ -3,21 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <title>Login | BarberPass</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
 
-  <div class="login-container">
-    <h1>BarberPass</h1>
-    <h2>Login Administrativo</h2>
+<body class="login-body">
 
-    <input id="email" type="email" placeholder="E-mail">
-    <input id="senha" type="password" placeholder="Senha">
+  <div class="login-card-premium">
 
-    <button onclick="fazerLogin()">Entrar</button>
+    <div class="mascote-area">
+      <img src="assets/img/mascote-login.png" alt="Mascote BarberPass">
+    </div>
+
+    <div class="brand-area">
+      <h1>BARBER<span>PASS</span></h1>
+      <p>Management System</p>
+      <i class="fa-solid fa-crown"></i>
+    </div>
+
+    <div class="welcome-area">
+      <h2>Bem-vindo de volta!</h2>
+      <p>Faça login para continuar</p>
+    </div>
+
+    <div class="input-group">
+      <i class="fa-regular fa-envelope"></i>
+      <input id="email" type="email" placeholder="E-mail">
+    </div>
+
+    <div class="input-group">
+      <i class="fa-solid fa-lock"></i>
+      <input id="senha" type="password" placeholder="Senha">
+    </div>
+
+    <div class="login-options">
+      <label>
+        <input type="checkbox">
+        Lembrar-me
+      </label>
+
+      <a href="#">Esqueci minha senha</a>
+    </div>
+
+    <button class="login-btn" onclick="fazerLogin()">
+      <i class="fa-solid fa-lock"></i>
+      Entrar
+    </button>
 
     <p id="mensagem"></p>
+
+    <footer>
+      <i class="fa-solid fa-shield-halved"></i>
+      © 2026 BarberPass. Todos os direitos reservados.
+    </footer>
+
   </div>
 
   <script src="js/supabase.js"></script>

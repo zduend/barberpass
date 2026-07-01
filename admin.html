@@ -3,24 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard | BarberPass</title>
+  
+  <!-- Fonte -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="admin-body">
 
   <aside class="sidebar">
-    <h2>BarberPass</h2>
+  <h2 class="logo">
+    <i class="fa-solid fa-scissors"></i>
+    BarberPass
+  </h2>
 
-    <nav>
-      <a href="#" onclick="mostrarSecao('dashboard')">🏠 Dashboard</a>
-      <a href="#" onclick="mostrarSecao('clientes')">👤 Clientes</a>
-      <a href="#" onclick="mostrarSecao('planos')">💳 Planos</a>
-      <a href="#" onclick="mostrarSecao('cortes')">✂️ Cortes</a>
-      <a href="#" onclick="mostrarSecao('financeiro')">💰 Financeiro</a>
-      <a href="#" onclick="mostrarSecao('relatorios')">📈 Relatórios</a>
-      <a href="#" onclick="mostrarSecao('configuracoes')">⚙️ Configurações</a>
-    </nav>
-  </aside>
+  <nav>
+    <a href="#" onclick="mostrarSecao('dashboard')">
+      <i class="fa-solid fa-house"></i>
+      Dashboard
+    </a>
+
+    <a href="#" onclick="mostrarSecao('clientes')">
+      <i class="fa-solid fa-users"></i>
+      Clientes
+    </a>
+
+    <a href="#" onclick="mostrarSecao('planos')">
+      <i class="fa-solid fa-credit-card"></i>
+      Planos
+    </a>
+
+    <a href="#" onclick="mostrarSecao('cortes')">
+      <i class="fa-solid fa-scissors"></i>
+      Cortes
+    </a>
+
+    <a href="#" onclick="mostrarSecao('financeiro')">
+      <i class="fa-solid fa-wallet"></i>
+      Financeiro
+    </a>
+
+    <a href="#" onclick="mostrarSecao('relatorios')">
+      <i class="fa-solid fa-chart-line"></i>
+      Relatórios
+    </a>
+
+    <a href="#" onclick="mostrarSecao('configuracoes')">
+      <i class="fa-solid fa-gear"></i>
+      Configurações
+    </a>
+  </nav>
+</aside>
 
   <main class="main-content">
     <header class="topbar">
