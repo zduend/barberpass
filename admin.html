@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | BarberPass</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="admin-body">
+
+  <aside class="sidebar">
+    <h2>BarberPass</h2>
+
+    <nav>
+      <a href="#" onclick="mostrarSecao('dashboard')">🏠 Dashboard</a>
+      <a href="#" onclick="mostrarSecao('clientes')">👤 Clientes</a>
+      <a href="#" onclick="mostrarSecao('planos')">💳 Planos</a>
+      <a href="#" onclick="mostrarSecao('cortes')">✂️ Cortes</a>
+      <a href="#" onclick="mostrarSecao('financeiro')">💰 Financeiro</a>
+      <a href="#" onclick="mostrarSecao('relatorios')">📈 Relatórios</a>
+      <a href="#" onclick="mostrarSecao('configuracoes')">⚙️ Configurações</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div>
+        <h1 id="tituloPagina">Dashboard</h1>
+        <p id="subtituloPagina">Visão geral da barbearia</p>
+      </div>
+
+      <div class="user-area">
+        <span id="usuario"></span>
+        <button onclick="sair()">Sair</button>
+      </div>
+    </header>
+
+    <div id="conteudo"></div>
+  </main>
+
+  <script src="js/supabase.js"></script>
+  <script src="js/components/cards.js"></script>
+  <script src="js/views/dashboard.js"></script>
+  <script src="js/views/clientes.js"></script>
+  <script src="js/services/clientesService.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

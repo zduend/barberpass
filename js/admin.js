@@ -1,0 +1,186 @@
+let clienteEditandoId = null;
+
+async function verificarLogin() {
+    const { data, error } = await supabaseClient.auth.getSession();
+
+    if (!data.session) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    carregarNomeUsuario();
+}
+
+async function carregarNomeUsuario() {
+    const { data } = await supabaseClient.auth.getUser();
+
+    if (data.user) {
+        document.getElementById("usuario").innerHTML = data.user.email;
+    }
+}
+
+async function sair() {
+    await supabaseClient.auth.signOut();
+    window.location.href = "login.html";
+}
+
+function mostrarSecao(secao) {
+    const conteudo = document.getElementById("conteudo");
+
+    switch (secao) {
+        case "dashboard":
+            conteudo.innerHTML = carregarDashboard();
+            break;
+
+        case "clientes":
+    conteudo.innerHTML = carregarClientes();
+    atualizarTabelaClientes();
+    break;
+
+        case "planos":
+            conteudo.innerHTML = "<h2>Planos</h2><p>Tela de planos em construção.</p>";
+            break;
+
+        default:
+            conteudo.innerHTML = "<h2>Página em construção</h2>";
+    }
+}
+
+async function salvarCliente() {
+    const cliente = {
+        nome: document.getElementById("clienteNome").value.trim(),
+        telefone: document.getElementById("clienteTelefone").value.trim(),
+        email: document.getElementById("clienteEmail").value.trim(),
+        cpf: document.getElementById("clienteCpf").value.trim(),
+        status: "ativo"
+    };
+
+    if (!cliente.nome || !cliente.telefone) {
+        alert("Preencha Nome e Telefone.");
+        return;
+    }
+
+    let sucesso;
+
+    if (clienteEditandoId) {
+        sucesso = await atualizarCliente(clienteEditandoId, cliente);
+    } else {
+        sucesso = await cadastrarCliente(cliente);
+    }
+
+    if (!sucesso) {
+        alert("Erro ao salvar cliente.");
+        return;
+    }
+
+    clienteEditandoId = null;
+
+    limparFormularioCliente();
+    fecharFormularioCliente();
+    mostrarSecao("clientes");
+}
+
+async function atualizarTabelaClientes() {
+    const lista = document.getElementById("listaClientes");
+
+    if (!lista) {
+        return;
+    }
+
+    lista.innerHTML = `
+        <tr>
+            <td colspan="5">Carregando clientes...</td>
+        </tr>
+    `;
+
+    const clientes = await listarClientes();
+
+    if (clientes.length === 0) {
+        lista.innerHTML = `
+            <tr>
+                <td colspan="5">Nenhum cliente cadastrado.</td>
+            </tr>
+        `;
+        return;
+    }
+
+    lista.innerHTML = clientes.map(cliente => `
+        <tr>
+            <td>${cliente.nome}</td>
+            <td>${cliente.telefone}</td>
+            <td>${cliente.email || "-"}</td>
+            <td><span class="status ativo">${cliente.status}</span></td>
+            <td>
+
+    <button
+        class="btn-small"
+        onclick="editarCliente('${cliente.id}')">
+
+        ✏️
+
+    </button>
+
+    <button
+        class="btn-small btn-delete"
+        onclick="removerCliente('${cliente.id}')">
+
+        🗑
+
+    </button>
+
+</td>
+        
+        
+        
+        
+            </tr>
+    `).join("");
+}
+
+async function editarCliente(id) {
+    const cliente = await buscarClientePorId(id);
+
+    if (!cliente) {
+        alert("Cliente não encontrado.");
+        return;
+    }
+
+    abrirFormularioCliente();
+    
+    clienteEditandoId = id;
+
+    document.getElementById("clienteNome").value = cliente.nome;
+    document.getElementById("clienteTelefone").value = cliente.telefone;
+    document.getElementById("clienteEmail").value = cliente.email || "";
+    document.getElementById("clienteCpf").value = cliente.cpf || "";
+}
+
+async function removerCliente(id) {
+
+    const confirmar = confirm(
+        "Deseja realmente excluir este cliente?"
+    );
+
+    if (!confirmar) {
+        return;
+    }
+
+    const sucesso = await excluirCliente(id);
+
+    if (!sucesso) {
+        alert("Erro ao excluir cliente.");
+        return;
+    }
+
+    mostrarSecao("clientes");
+
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
+    await verificarLogin();
+    mostrarSecao("dashboard");
+});
+
+limparFormularioCliente();
+fecharFormularioCliente();
+mostrarSecao("clientes");
