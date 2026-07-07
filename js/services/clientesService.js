@@ -75,3 +75,16 @@ async function excluirCliente(id) {
 
     return true;
 }
+
+async function contarClientes() {
+    const { count, error } = await supabaseClient
+        .from("clientes")
+        .select("*", { count: "exact", head: true });
+
+    if (error) {
+        console.error(error);
+        return 0;
+    }
+
+    return count;
+}

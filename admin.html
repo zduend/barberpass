@@ -3,73 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard | BarberPass</title>
-  
-  <!-- Fonte -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- Font Awesome -->
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body class="admin-body">
 
   <aside class="sidebar">
-  <h2 class="logo">
-    <i class="fa-solid fa-scissors"></i>
-    BarberPass
-  </h2>
-
-  <nav>
-    <a href="#" onclick="mostrarSecao('dashboard')">
-      <i class="fa-solid fa-house"></i>
-      Dashboard
-    </a>
-
-    <a href="#" onclick="mostrarSecao('clientes')">
-      <i class="fa-solid fa-users"></i>
-      Clientes
-    </a>
-
-    <a href="#" onclick="mostrarSecao('planos')">
-      <i class="fa-solid fa-credit-card"></i>
-      Planos
-    </a>
-
-    <a href="#" onclick="mostrarSecao('cortes')">
+    <h2 class="logo">
       <i class="fa-solid fa-scissors"></i>
-      Cortes
-    </a>
+      BarberPass
+    </h2>
 
-    <a href="#" onclick="mostrarSecao('financeiro')">
-      <i class="fa-solid fa-wallet"></i>
-      Financeiro
-    </a>
+    <nav>
+      <a href="#" onclick="mostrarSecao('dashboard')">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+      </a>
 
-    <a href="#" onclick="mostrarSecao('relatorios')">
-      <i class="fa-solid fa-chart-line"></i>
-      Relatórios
-    </a>
+      <a href="#" onclick="mostrarSecao('clientes')">
+        <i class="fa-solid fa-users"></i>
+        Clientes
+      </a>
 
-    <a href="#" onclick="mostrarSecao('configuracoes')">
-      <i class="fa-solid fa-gear"></i>
-      Configurações
-    </a>
-  </nav>
-</aside>
+      <a href="#" onclick="mostrarSecao('planos')">
+        <i class="fa-solid fa-credit-card"></i>
+        Planos
+      </a>
+
+      <a href="#" onclick="mostrarSecao('cortes')">
+        <i class="fa-solid fa-scissors"></i>
+        Cortes
+      </a>
+
+      <a href="#" onclick="mostrarSecao('financeiro')">
+        <i class="fa-solid fa-wallet"></i>
+        Financeiro
+      </a>
+
+      <a href="#" onclick="mostrarSecao('relatorios')">
+        <i class="fa-solid fa-chart-line"></i>
+        Relatórios
+      </a>
+
+      <a href="#" onclick="mostrarSecao('configuracoes')">
+        <i class="fa-solid fa-gear"></i>
+        Configurações
+      </a>
+    </nav>
+  </aside>
 
   <main class="main-content">
+
     <header class="topbar">
-      <div>
-        <h1 id="tituloPagina">Dashboard</h1>
-        <p id="subtituloPagina">Visão geral da barbearia</p>
-      </div>
+      <div></div>
 
       <div class="user-area">
         <span id="usuario"></span>
@@ -78,13 +74,18 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     </header>
 
     <div id="conteudo"></div>
+
   </main>
 
   <script src="js/supabase.js"></script>
-  <script src="js/components/cards.js"></script>
+
+  <script src="js/components/card.js"></script>
+
+  <script src="js/services/clientesService.js"></script>
+
   <script src="js/views/dashboard.js"></script>
   <script src="js/views/clientes.js"></script>
-  <script src="js/services/clientesService.js"></script>
+
   <script src="js/admin.js"></script>
 </body>
 </html>

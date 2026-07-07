@@ -24,21 +24,37 @@ async function sair() {
     window.location.href = "login.html";
 }
 
-function mostrarSecao(secao) {
+async function mostrarSecao(secao) {
     const conteudo = document.getElementById("conteudo");
 
     switch (secao) {
         case "dashboard":
-            conteudo.innerHTML = carregarDashboard();
+            conteudo.innerHTML = await carregarDashboard();
             break;
 
         case "clientes":
-    conteudo.innerHTML = carregarClientes();
-    atualizarTabelaClientes();
-    break;
+            conteudo.innerHTML = carregarClientes();
+            atualizarTabelaClientes();
+            break;
 
         case "planos":
             conteudo.innerHTML = "<h2>Planos</h2><p>Tela de planos em construção.</p>";
+            break;
+
+        case "cortes":
+            conteudo.innerHTML = "<h2>Cortes</h2><p>Tela de cortes em construção.</p>";
+            break;
+
+        case "financeiro":
+            conteudo.innerHTML = "<h2>Financeiro</h2><p>Tela financeira em construção.</p>";
+            break;
+
+        case "relatorios":
+            conteudo.innerHTML = "<h2>Relatórios</h2><p>Tela de relatórios em construção.</p>";
+            break;
+
+        case "configuracoes":
+            conteudo.innerHTML = "<h2>Configurações</h2><p>Tela de configurações em construção.</p>";
             break;
 
         default:
