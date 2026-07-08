@@ -1,91 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Dashboard | BarberPass</title>
+    <meta charset="UTF-8">
+    <title>Dashboard | BarberPass</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/topbar.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body class="admin-body">
 
-  <aside class="sidebar">
-    <h2 class="logo">
-      <i class="fa-solid fa-scissors"></i>
-      BarberPass
-    </h2>
+    <aside class="sidebar">
 
-    <nav>
-      <a href="#" onclick="mostrarSecao('dashboard')">
-        <i class="fa-solid fa-house"></i>
-        Dashboard
-      </a>
+        <div class="sidebar-brand">
+  <img src="assets/mascote-login.png" alt="Mascote BarberPass">
 
-      <a href="#" onclick="mostrarSecao('clientes')">
-        <i class="fa-solid fa-users"></i>
-        Clientes
-      </a>
+  <h2>
+    BARBER<span>PASS</span>
+  </h2>
 
-      <a href="#" onclick="mostrarSecao('planos')">
-        <i class="fa-solid fa-credit-card"></i>
-        Planos
-      </a>
+  <small>MANAGEMENT SYSTEM</small>
 
-      <a href="#" onclick="mostrarSecao('cortes')">
-        <i class="fa-solid fa-scissors"></i>
-        Cortes
-      </a>
+  <i class="fa-solid fa-crown"></i>
+</div>
 
-      <a href="#" onclick="mostrarSecao('financeiro')">
-        <i class="fa-solid fa-wallet"></i>
-        Financeiro
-      </a>
+        <nav>
 
-      <a href="#" onclick="mostrarSecao('relatorios')">
-        <i class="fa-solid fa-chart-line"></i>
-        Relatórios
-      </a>
+            <a href="#" onclick="mostrarSecao('dashboard')">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
 
-      <a href="#" onclick="mostrarSecao('configuracoes')">
-        <i class="fa-solid fa-gear"></i>
-        Configurações
-      </a>
-    </nav>
-  </aside>
+            <a href="#" onclick="mostrarSecao('clientes')">
+                <i class="fa-solid fa-users"></i>
+                Clientes
+            </a>
 
-  <main class="main-content">
+            <a href="#" onclick="mostrarSecao('planos')">
+                <i class="fa-solid fa-credit-card"></i>
+                Planos
+            </a>
 
-    <header class="topbar">
-      <div></div>
+            <a href="#" onclick="mostrarSecao('cortes')">
+                <i class="fa-solid fa-scissors"></i>
+                Cortes
+            </a>
 
-      <div class="user-area">
-        <span id="usuario"></span>
-        <button onclick="sair()">Sair</button>
-      </div>
-    </header>
+            <a href="#" onclick="mostrarSecao('financeiro')">
+                <i class="fa-solid fa-wallet"></i>
+                Financeiro
+            </a>
 
-    <div id="conteudo"></div>
+            <a href="#" onclick="mostrarSecao('relatorios')">
+                <i class="fa-solid fa-chart-line"></i>
+                Relatórios
+            </a>
 
-  </main>
+            <a href="#" onclick="mostrarSecao('configuracoes')">
+                <i class="fa-solid fa-gear"></i>
+                Configurações
+            </a>
 
-  <script src="js/supabase.js"></script>
+        </nav>
 
-  <script src="js/components/card.js"></script>
+    </aside>
 
-  <script src="js/services/clientesService.js"></script>
+    <main class="main-content">
 
-  <script src="js/views/dashboard.js"></script>
-  <script src="js/views/clientes.js"></script>
+        <header class="topbar">
+    <div class="topbar-page">
+        <h1 id="tituloPagina">Dashboard</h1>
+        <p id="subtituloPagina">Bem-vindo novamente 👋</p>
+    </div>
 
-  <script src="js/admin.js"></script>
+    <div class="topbar-actions">
+        <div class="notification-btn">
+            <i class="fa-regular fa-bell"></i>
+            <span>3</span>
+        </div>
+
+        <div class="user-profile">
+            <div class="user-avatar">S</div>
+
+            <div>
+                <strong>Samuel</strong>
+                <span>Administrador</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </div>
+</header>
+
+        <div id="conteudo"></div>
+
+    </main>
+
+    <!-- Scripts -->
+<script src="js/supabase.js"></script>
+
+<script src="js/components/card.js"></script>
+<script src="js/components/topbar.js"></script>
+
+<script src="js/services/clientesService.js"></script>
+
+<script src="js/views/dashboard.js"></script>
+<script src="js/views/clientes.js"></script>
+
+<script src="js/admin.js"></script>
 </body>
 </html>

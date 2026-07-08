@@ -1,0 +1,96 @@
+/* TOPBAR PREMIUM */
+
+.topbar{
+    height:74px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:28px;
+    padding:0 6px;
+}
+
+.topbar-page h1{
+    font-size:24px;
+    color:var(--text);
+    margin:0;
+}
+
+.topbar-page p{
+    color:var(--text-secondary);
+    font-size:13px;
+    margin-top:4px;
+}
+
+.topbar-actions{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.notification-btn{
+    position:relative;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:#191919;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.notification-btn span{
+    position:absolute;
+    top:-5px;
+    right:-4px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:var(--gold);
+    color:#111;
+    font-size:11px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.user-profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 12px;
+    border:1px solid var(--border);
+    border-radius:16px;
+    background:#191919;
+}
+
+.user-avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),#8f6f12);
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+}
+
+.user-profile strong{
+    display:block;
+    color:var(--text);
+    font-size:14px;
+}
+
+.user-profile span{
+    display:block;
+    color:var(--text-secondary);
+    font-size:12px;
+}
+
+.user-profile i{
+    color:var(--gold);
+    margin-left:8px;
+}

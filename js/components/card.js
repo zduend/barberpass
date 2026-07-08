@@ -1,10 +1,29 @@
-function criarCard(icone, titulo, valor, descricao) {
+function criarCard(config){
+
     return `
         <div class="stat-card">
-            <i class="${icone}"></i>
-            <h2>${valor}</h2>
-            <span>${titulo}</span>
-            <small>${descricao}</small>
+
+            <div class="card-icon">
+                <i class="${config.icone}"></i>
+            </div>
+
+            <div class="card-info">
+
+                <span class="card-title">
+                    ${config.titulo}
+                </span>
+
+                <h2>
+                    ${config.valor}
+                </h2>
+
+                <small>
+                    ${config.descricao}
+                </small>
+
+            </div>
+
         </div>
     `;
+
 }

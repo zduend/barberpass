@@ -14,8 +14,12 @@ async function verificarLogin() {
 async function carregarNomeUsuario() {
     const { data } = await supabaseClient.auth.getUser();
 
-    if (data.user) {
-        document.getElementById("usuario").innerHTML = data.user.email;
+    if (!data.user) return;
+
+    const nomeTopo = document.querySelector(".user-profile strong");
+
+    if (nomeTopo) {
+        nomeTopo.textContent = "Samuel";
     }
 }
 
@@ -27,12 +31,18 @@ async function sair() {
 async function mostrarSecao(secao) {
     const conteudo = document.getElementById("conteudo");
 
+    if (typeof atualizarTopbar === "function") {
+        atualizarTopbar(secao);
+    }
+
+    marcarMenuAtivo(secao);
+
     switch (secao) {
         case "dashboard":
             conteudo.innerHTML = await carregarDashboard();
             break;
-
-        case "clientes":
+        
+            case "clientes":
             conteudo.innerHTML = carregarClientes();
             atualizarTabelaClientes();
             break;
@@ -192,11 +202,20 @@ async function removerCliente(id) {
 
 }
 
+function marcarMenuAtivo(secao) {
+    const links = document.querySelectorAll(".sidebar nav a");
+
+    links.forEach(link => {
+        link.classList.remove("active");
+
+        if (link.getAttribute("onclick").includes(secao)) {
+            link.classList.add("active");
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
     await verificarLogin();
-    mostrarSecao("dashboard");
+    await mostrarSecao("dashboard");
 });
 
-limparFormularioCliente();
-fecharFormularioCliente();
-mostrarSecao("clientes");

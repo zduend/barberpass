@@ -1,0 +1,193 @@
+.dashboard-main-grid{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:22px !important;
+    align-items:stretch !important;
+    margin-top:22px;
+}
+
+.clientes-dashboard-card,
+.agenda-dashboard-card{
+    background:linear-gradient(145deg, #202020, #171717);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:24px;
+    min-height:455px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    overflow:hidden;
+    transition:.25s ease;
+}
+
+.clientes-dashboard-card:hover,
+.agenda-dashboard-card:hover{
+    border-color:rgba(212,175,55,.35);
+    box-shadow:0 18px 45px rgba(0,0,0,.25);
+}
+
+.dashboard-card-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:6px;
+}
+
+.dashboard-card-header h2{
+    font-size:22px;
+    color:var(--text);
+}
+
+.clientes-lista-dashboard,
+.agenda-dashboard-list{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+
+.cliente-dashboard-row,
+.agenda-dashboard-row{
+    transition:.2s ease;
+}
+
+.cliente-dashboard-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:15px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.cliente-dashboard-info{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.dashboard-avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:rgba(212,175,55,.18);
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    flex-shrink:0;
+}
+
+.cliente-dashboard-texto strong{
+    display:block;
+    color:var(--text);
+    font-size:14px;
+}
+
+.cliente-dashboard-texto span{
+    display:block;
+    color:var(--text-secondary);
+    font-size:13px;
+    margin-top:4px;
+}
+
+.dashboard-status{
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    text-transform:lowercase;
+}
+
+.dashboard-status.ativo{
+    color:#35e06f;
+    background:rgba(53,224,111,.13);
+}
+
+.agenda-dashboard-row{
+    display:grid !important;
+    grid-template-columns:70px 1fr 110px;
+    align-items:center;
+    gap:14px;
+    padding:15px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.agenda-hora{
+    color:var(--text);
+    font-size:15px;
+    font-weight:700;
+}
+
+.agenda-livre-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--text-secondary);
+    font-size:14px;
+}
+
+.agenda-plus{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    border:1px dashed var(--gold);
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.btn-outline-dashboard,
+.btn-full-dashboard,
+.btn-agendar{
+    display:inline-flex !important;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    text-decoration:none;
+    background:transparent !important;
+    color:var(--gold) !important;
+    border:1px solid rgba(212,175,55,.7) !important;
+    border-radius:10px;
+    padding:8px 14px;
+    font-size:13px;
+    font-weight:600;
+    transition:.2s ease;
+}
+
+.btn-outline-dashboard:hover,
+.btn-agendar:hover,
+.btn-full-dashboard:hover{
+    background:rgba(212,175,55,.1) !important;
+    border-color:var(--gold) !important;
+    transform:translateY(-1px);
+}
+
+.btn-agendar{
+    padding:8px 16px;
+}
+
+.btn-full-dashboard{
+    width:100% !important;
+    margin-top:auto;
+    padding:15px;
+    border-color:var(--border) !important;
+    border-radius:14px;
+}
+
+.cliente-dashboard-row:hover,
+.agenda-dashboard-row:hover{
+    background:rgba(255,255,255,.025);
+    padding-left:8px;
+    padding-right:8px;
+    border-radius:12px;
+}
+
+@media (max-width:1100px){
+    .dashboard-main-grid{
+        grid-template-columns:1fr !important;
+    }
+}

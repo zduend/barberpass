@@ -88,3 +88,20 @@ async function contarClientes() {
 
     return count;
 }
+
+async function listarUltimosClientes() {
+
+    const { data, error } = await supabaseClient
+        .from("clientes")
+        .select("*")
+        .order("id", { ascending: false })
+        .limit(5);
+
+    if (error) {
+        console.error(error);
+        return [];
+    }
+
+    return data;
+
+}
