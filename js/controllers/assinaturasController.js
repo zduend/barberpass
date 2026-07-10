@@ -156,90 +156,7 @@ async function atualizarListaAssinaturas() {
         .join("");
 }
 
-function criarCardAssinatura(assinatura) {
-    const cliente = assinatura.clientes;
-    const plano = assinatura.planos;
 
-    const cortesTotais = Number(assinatura.cortes_totais);
-    const cortesRestantes = Number(assinatura.cortes_restantes);
-
-    const percentual = cortesTotais > 0
-        ? Math.max(
-            0,
-            Math.min(100, (cortesRestantes / cortesTotais) * 100)
-        )
-        : 0;
-
-    return `
-        <article class="assinatura-card">
-
-            <div class="assinatura-card-header">
-                <div class="assinatura-cliente">
-                    <div class="assinatura-avatar">
-                        ${cliente?.nome?.charAt(0).toUpperCase() || "?"}
-                    </div>
-
-                    <div>
-                        <h3>${cliente?.nome || "Cliente não encontrado"}</h3>
-                        <span>${cliente?.telefone || "-"}</span>
-                    </div>
-                </div>
-
-                <span class="dashboard-status ${assinatura.status}">
-                    ${assinatura.status}
-                </span>
-            </div>
-
-            <div class="assinatura-plano">
-                <i class="fa-solid fa-crown"></i>
-
-                <div>
-                    <span>Plano contratado</span>
-                    <strong>${plano?.nome || "Plano não encontrado"}</strong>
-                </div>
-            </div>
-
-            <div class="assinatura-cortes">
-                <div class="assinatura-cortes-topo">
-                    <span>Cortes restantes</span>
-
-                    <strong>
-                        ${cortesRestantes}/${cortesTotais}
-                    </strong>
-                </div>
-
-                <div class="assinatura-progresso">
-                    <div style="width:${percentual}%"></div>
-                </div>
-            </div>
-
-            <div class="assinatura-datas">
-                <div>
-                    <span>Início</span>
-                    <strong>
-                        ${formatarDataAssinatura(assinatura.data_inicio)}
-                    </strong>
-                </div>
-
-                <div>
-                    <span>Vencimento</span>
-                    <strong>
-                        ${formatarDataAssinatura(assinatura.data_vencimento)}
-                    </strong>
-                </div>
-            </div>
-
-            <button
-                class="btn-small btn-delete"
-                onclick="removerAssinatura('${assinatura.id}')"
-            >
-                <i class="fa-solid fa-trash"></i>
-                Excluir
-            </button>
-
-        </article>
-    `;
-}
 
 async function removerAssinatura(id) {
     const confirmar = confirm(
@@ -256,4 +173,34 @@ async function removerAssinatura(id) {
     }
 
     await atualizarListaAssinaturas();
+}
+
+async function consumirCorte(id, restantes) {
+
+    if (restantes <= 0) {
+
+        alert("Este plano não possui mais cortes.");
+
+        return;
+
+    }
+
+    const confirmar = confirm(
+        "Registrar um corte para este cliente?"
+    );
+
+    if (!confirmar) return;
+
+    const sucesso = await registrarCorte(id, restantes);
+
+    if (!sucesso) {
+
+        alert("Erro ao registrar corte.");
+
+        return;
+
+    }
+
+    atualizarListaAssinaturas();
+
 }
