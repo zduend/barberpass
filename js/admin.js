@@ -1,7 +1,7 @@
 let clienteEditandoId = null;
 
 async function verificarLogin() {
-    const { data, error } = await supabaseClient.auth.getSession();
+    const { data } = await supabaseClient.auth.getSession();
 
     if (!data.session) {
         window.location.href = "login.html";
@@ -38,17 +38,24 @@ async function mostrarSecao(secao) {
     marcarMenuAtivo(secao);
 
     switch (secao) {
+        
+        case "assinaturas":
+            conteudo.innerHTML = carregarAssinaturas();
+            atualizarListaAssinaturas();
+            break;
+
         case "dashboard":
             conteudo.innerHTML = await carregarDashboard();
             break;
-        
-            case "clientes":
+
+        case "clientes":
             conteudo.innerHTML = carregarClientes();
             atualizarTabelaClientes();
             break;
 
         case "planos":
-            conteudo.innerHTML = "<h2>Planos</h2><p>Tela de planos em construção.</p>";
+            conteudo.innerHTML = carregarPlanos();
+            atualizarListaPlanos();
             break;
 
         case "cortes":
@@ -72,6 +79,8 @@ async function mostrarSecao(secao) {
     }
 }
 
+/* CLIENTES */
+
 async function salvarCliente() {
     const cliente = {
         nome: document.getElementById("clienteNome").value.trim(),
@@ -86,13 +95,9 @@ async function salvarCliente() {
         return;
     }
 
-    let sucesso;
-
-    if (clienteEditandoId) {
-        sucesso = await atualizarCliente(clienteEditandoId, cliente);
-    } else {
-        sucesso = await cadastrarCliente(cliente);
-    }
+    const sucesso = clienteEditandoId
+        ? await atualizarCliente(clienteEditandoId, cliente)
+        : await cadastrarCliente(cliente);
 
     if (!sucesso) {
         alert("Erro ao salvar cliente.");
@@ -109,9 +114,7 @@ async function salvarCliente() {
 async function atualizarTabelaClientes() {
     const lista = document.getElementById("listaClientes");
 
-    if (!lista) {
-        return;
-    }
+    if (!lista) return;
 
     lista.innerHTML = `
         <tr>
@@ -137,29 +140,10 @@ async function atualizarTabelaClientes() {
             <td>${cliente.email || "-"}</td>
             <td><span class="status ativo">${cliente.status}</span></td>
             <td>
-
-    <button
-        class="btn-small"
-        onclick="editarCliente('${cliente.id}')">
-
-        ✏️
-
-    </button>
-
-    <button
-        class="btn-small btn-delete"
-        onclick="removerCliente('${cliente.id}')">
-
-        🗑
-
-    </button>
-
-</td>
-        
-        
-        
-        
-            </tr>
+                <button class="btn-small" onclick="editarCliente('${cliente.id}')">✏️</button>
+                <button class="btn-small btn-delete" onclick="removerCliente('${cliente.id}')">🗑</button>
+            </td>
+        </tr>
     `).join("");
 }
 
@@ -172,7 +156,7 @@ async function editarCliente(id) {
     }
 
     abrirFormularioCliente();
-    
+
     clienteEditandoId = id;
 
     document.getElementById("clienteNome").value = cliente.nome;
@@ -182,14 +166,9 @@ async function editarCliente(id) {
 }
 
 async function removerCliente(id) {
+    const confirmar = confirm("Deseja realmente excluir este cliente?");
 
-    const confirmar = confirm(
-        "Deseja realmente excluir este cliente?"
-    );
-
-    if (!confirmar) {
-        return;
-    }
+    if (!confirmar) return;
 
     const sucesso = await excluirCliente(id);
 
@@ -199,8 +178,9 @@ async function removerCliente(id) {
     }
 
     mostrarSecao("clientes");
-
 }
+
+/* MENU */
 
 function marcarMenuAtivo(secao) {
     const links = document.querySelectorAll(".sidebar nav a");
@@ -218,4 +198,3 @@ document.addEventListener("DOMContentLoaded", async function () {
     await verificarLogin();
     await mostrarSecao("dashboard");
 });
-
