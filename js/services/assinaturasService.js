@@ -35,11 +35,10 @@ async function cadastrarAssinatura(assinatura) {
 
     if (error) {
         console.error("Erro ao cadastrar assinatura:", error);
-        return false;
+        return null;
     }
 
-    console.log("Assinatura cadastrada:", data);
-    return true;
+    return data;
 }
 
 async function buscarAssinaturaPorId(id) {

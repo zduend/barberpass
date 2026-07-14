@@ -39,6 +39,11 @@ async function mostrarSecao(secao) {
 
     switch (secao) {
         
+        case "agenda":
+            conteudo.innerHTML = carregarAgenda();
+            atualizarAgenda();
+            break;
+        
         case "assinaturas":
             conteudo.innerHTML = carregarAssinaturas();
             atualizarListaAssinaturas();

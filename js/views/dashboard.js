@@ -1,8 +1,38 @@
 async function carregarDashboard() {
-    const totalClientes = await contarClientes();
-    const ultimosClientes = await listarUltimosClientes();
+    const hoje = new Date();
+    const dataHoje = formatarDataISO(hoje);
 
-    const hora = new Date().getHours();
+    const [
+        totalClientes,
+        ultimosClientes,
+        receitaMes,
+        assinaturas,
+        agendamentosHoje
+    ] = await Promise.all([
+        contarClientes(),
+        listarUltimosClientes(),
+        obterReceitaMes(),
+        listarAssinaturas(),
+        listarAgendamentosPorData(dataHoje)
+    ]);
+
+    const cortesHoje = agendamentosHoje.filter(
+        agendamento => agendamento.status === "concluido"
+    ).length;
+
+    const planosAtivos = assinaturas.filter(
+        assinatura => assinatura.status === "ativo"
+    ).length;
+
+    const receitaMesFormatada = Number(receitaMes || 0).toLocaleString(
+        "pt-BR",
+        {
+            style: "currency",
+            currency: "BRL"
+        }
+    );
+
+    const hora = hoje.getHours();
 
     let saudacao = "";
 
@@ -11,8 +41,6 @@ async function carregarDashboard() {
     else saudacao = "Boa noite";
 
     const nomeUsuario = "Samuel";
-
-    const hoje = new Date();
 
     const dataAtual = hoje.toLocaleDateString("pt-BR", {
         weekday: "long",
@@ -56,22 +84,28 @@ async function carregarDashboard() {
             ${criarCard({
                 icone: "fa-solid fa-scissors",
                 titulo: "Cortes hoje",
-                valor: 0,
-                descricao: "Em breve"
+                valor: cortesHoje,
+                descricao:
+                    cortesHoje === 1
+                        ? "Atendimento concluído"
+                        : "Atendimentos concluídos"
             })}
 
             ${criarCard({
                 icone: "fa-solid fa-wallet",
                 titulo: "Receita do mês",
-                valor: "R$ 0,00",
-                descricao: "Em breve"
+                valor: receitaMesFormatada,
+                descricao: "Receitas registradas"
             })}
 
             ${criarCard({
                 icone: "fa-solid fa-crown",
                 titulo: "Planos ativos",
-                valor: 0,
-                descricao: "Em breve"
+                valor: planosAtivos,
+                descricao:
+                    planosAtivos === 1
+                        ? "Assinatura ativa"
+                        : "Assinaturas ativas"
             })}
         </section>
 
@@ -80,50 +114,80 @@ async function carregarDashboard() {
                 <div class="dashboard-card-header">
                     <h2>Últimos Clientes</h2>
 
-                    <a class="btn-outline-dashboard" href="javascript:void(0)">
+                    <button
+                        type="button"
+                        class="btn-outline-dashboard"
+                        onclick="mostrarSecao('clientes')"
+                    >
                         Ver todos
-                    </a>
+                    </button>
                 </div>
 
                 <div class="clientes-lista-dashboard">
-                    ${ultimosClientes.map(cliente => criarLinhaClienteDashboard(cliente)).join("")}
+                    ${
+                        ultimosClientes.length > 0
+                            ? ultimosClientes
+                                .map(cliente =>
+                                    criarLinhaClienteDashboard(cliente)
+                                )
+                                .join("")
+                            : criarEstadoVazioDashboard(
+                                "Nenhum cliente cadastrado."
+                            )
+                    }
                 </div>
 
-                <a class="btn-full-dashboard" href="javascript:void(0)">
+                <button
+                    type="button"
+                    class="btn-full-dashboard"
+                    onclick="mostrarSecao('clientes')"
+                >
                     <i class="fa-solid fa-users"></i>
                     Ver todos os clientes
-                </a>
+                </button>
             </section>
 
             <section class="agenda-dashboard-card">
                 <div class="dashboard-card-header">
                     <h2>Agenda do Dia</h2>
 
-                    <a class="btn-outline-dashboard" href="javascript:void(0)">
+                    <button
+                        type="button"
+                        class="btn-outline-dashboard"
+                        onclick="mostrarSecao('agenda')"
+                    >
                         Ver agenda completa
-                    </a>
+                    </button>
                 </div>
 
                 <div class="agenda-dashboard-list">
-                    ${criarHorarioLivre("09:00")}
-                    ${criarHorarioLivre("09:40")}
-                    ${criarHorarioLivre("10:20")}
-                    ${criarHorarioLivre("11:00")}
-                    ${criarHorarioLivre("11:40")}
-                    ${criarHorarioLivre("13:00")}
+                    ${criarAgendaDashboard(agendamentosHoje)}
                 </div>
 
-                <a class="btn-full-dashboard" href="javascript:void(0)">
+                <button
+                    type="button"
+                    class="btn-full-dashboard"
+                    onclick="mostrarSecao('agenda')"
+                >
                     <i class="fa-regular fa-calendar"></i>
                     Ver todos os horários
-                </a>
+                </button>
             </section>
         </div>
     `;
 }
 
+function formatarDataISO(data) {
+    const ano = data.getFullYear();
+    const mes = String(data.getMonth() + 1).padStart(2, "0");
+    const dia = String(data.getDate()).padStart(2, "0");
+
+    return `${ano}-${mes}-${dia}`;
+}
+
 function criarLinhaClienteDashboard(cliente) {
-    const inicial = cliente.nome.charAt(0).toUpperCase();
+    const nome = cliente.nome || "Cliente";
+    const inicial = nome.charAt(0).toUpperCase();
 
     return `
         <div class="cliente-dashboard-row">
@@ -133,34 +197,71 @@ function criarLinhaClienteDashboard(cliente) {
                 </div>
 
                 <div class="cliente-dashboard-texto">
-                    <strong>${cliente.nome}</strong>
-                    <span>${cliente.telefone}</span>
+                    <strong>${nome}</strong>
+                    <span>${cliente.telefone || "-"}</span>
                 </div>
             </div>
 
-            <span class="dashboard-status ativo">
-                ${cliente.status}
+            <span class="dashboard-status ${cliente.status || "ativo"}">
+                ${cliente.status || "ativo"}
             </span>
         </div>
     `;
 }
 
-function criarHorarioLivre(horario) {
-    return `
-        <div class="agenda-dashboard-row">
-            <strong class="agenda-hora">${horario}</strong>
+function criarAgendaDashboard(agendamentos) {
+    if (!agendamentos || agendamentos.length === 0) {
+        return criarEstadoVazioDashboard(
+            "Nenhum agendamento para hoje."
+        );
+    }
 
-            <div class="agenda-livre-info">
-                <div class="agenda-plus">
-                    <i class="fa-solid fa-plus"></i>
+    return agendamentos
+        .slice(0, 6)
+        .map(agendamento => criarLinhaAgendaDashboard(agendamento))
+        .join("");
+}
+
+function criarLinhaAgendaDashboard(agendamento) {
+    const horario = String(agendamento.horario || "").slice(0, 5);
+    const cliente = agendamento.clientes;
+    const assinatura = agendamento.assinaturas;
+
+    const nomeCliente = cliente?.nome || "Cliente não encontrado";
+    const plano = assinatura?.planos?.nome || "Atendimento avulso";
+
+    return `
+        <div class="agenda-dashboard-row agenda-dashboard-agendada">
+            <strong class="agenda-hora">
+                ${horario}
+            </strong>
+
+            <div class="agenda-cliente-dashboard">
+                <div class="agenda-avatar-dashboard">
+                    ${nomeCliente.charAt(0).toUpperCase()}
                 </div>
 
-                <span>Horário livre</span>
+                <div>
+                    <strong>${nomeCliente}</strong>
+
+                    <span>
+                        ${agendamento.servico || "Serviço"} · ${plano}
+                    </span>
+                </div>
             </div>
 
-            <a class="btn-agendar" href="javascript:void(0)">
-                Agendar
-            </a>
+            <span class="agendamento-status ${agendamento.status}">
+                ${formatarStatusAgendamento(agendamento.status)}
+            </span>
+        </div>
+    `;
+}
+
+function criarEstadoVazioDashboard(mensagem) {
+    return `
+        <div class="dashboard-empty-state">
+            <i class="fa-regular fa-folder-open"></i>
+            <span>${mensagem}</span>
         </div>
     `;
 }

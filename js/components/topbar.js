@@ -1,41 +1,58 @@
-const paginas = {
-    dashboard: {
-        titulo: "Dashboard",
-        subtitulo: "Bem-vindo novamente 👋"
-    },
+function atualizarTopbar(secao) {
+    const titulo = document.getElementById("tituloPagina");
+    const subtitulo = document.getElementById("subtituloPagina");
 
-    clientes: {
-        titulo: "Clientes",
-        subtitulo: "Gerencie seus clientes cadastrados"
-    },
+    if (!titulo || !subtitulo) return;
 
-    planos: {
-        titulo: "Planos",
-        subtitulo: "Gerencie planos e assinaturas"
-    },
+    const paginas = {
+        dashboard: {
+            titulo: "Dashboard",
+            subtitulo: "Bem-vindo novamente 👋"
+        },
 
-    assinaturas: {
-        titulo: "Assinaturas",
-        subtitulo: "Gerencie os planos contratados pelos clientes"
-    },
+        clientes: {
+            titulo: "Clientes",
+            subtitulo: "Gerencie seus clientes cadastrados"
+        },
 
-    cortes: {
-        titulo: "Cortes",
-        subtitulo: "Histórico e serviços"
-    },
+        planos: {
+            titulo: "Planos",
+            subtitulo: "Gerencie planos e assinaturas"
+        },
 
-    financeiro: {
-        titulo: "Financeiro",
-        subtitulo: "Controle receitas e despesas"
-    },
+        assinaturas: {
+            titulo: "Assinaturas",
+            subtitulo: "Gerencie os planos contratados pelos clientes"
+        },
 
-    relatorios: {
-        titulo: "Relatórios",
-        subtitulo: "Indicadores da barbearia"
-    },
+        agenda: {
+            titulo: "Agenda",
+            subtitulo: "Gerencie os horários e atendimentos da barbearia"
+        },
 
-    configuracoes: {
-        titulo: "Configurações",
-        subtitulo: "Personalize o sistema"
-    }
-};
+        cortes: {
+            titulo: "Cortes",
+            subtitulo: "Histórico e serviços"
+        },
+
+        financeiro: {
+            titulo: "Financeiro",
+            subtitulo: "Controle receitas e despesas"
+        },
+
+        relatorios: {
+            titulo: "Relatórios",
+            subtitulo: "Indicadores da barbearia"
+        },
+
+        configuracoes: {
+            titulo: "Configurações",
+            subtitulo: "Personalize o sistema"
+        }
+    };
+
+    const paginaAtual = paginas[secao] || paginas.dashboard;
+
+    titulo.textContent = paginaAtual.titulo;
+    subtitulo.textContent = paginaAtual.subtitulo;
+}

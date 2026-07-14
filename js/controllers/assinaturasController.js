@@ -117,15 +117,46 @@ async function salvarAssinatura() {
         status: "ativo"
     };
 
-    const sucesso = await cadastrarAssinatura(assinatura);
+    const assinaturaCriada = await cadastrarAssinatura(assinatura);
 
-    if (!sucesso) {
-        alert("Não foi possível criar a assinatura.");
+if (!assinaturaCriada) {
+    alert("Não foi possível criar a assinatura.");
+    return;
+}
+
+const receitaCriada = await registrarReceita({
+    data: dataInicio,
+    categoria: "plano",
+    descricao: `Assinatura do plano ${plano.nome}`,
+    valor: Number(plano.valor),
+    clienteId,
+    assinaturaId: assinaturaCriada.id
+});
+
+if (!receitaCriada) {
+    console.error(
+        "A assinatura foi criada, mas não foi possível registrar a receita."
+    );
+
+    const assinaturaRemovida = await excluirAssinatura(
+        assinaturaCriada.id
+    );
+
+    if (!assinaturaRemovida) {
+        alert(
+            "A assinatura foi criada, mas houve erro ao registrar a receita. Verifique o Financeiro."
+        );
         return;
     }
 
-    fecharModal();
-    await atualizarListaAssinaturas();
+    alert(
+        "Não foi possível registrar a receita. A assinatura não foi concluída."
+    );
+    return;
+}
+
+fecharModal();
+await atualizarListaAssinaturas();
 }
 
 async function atualizarListaAssinaturas() {

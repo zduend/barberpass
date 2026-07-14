@@ -1,0 +1,527 @@
+/* =========================================
+   AGENDA
+========================================= */
+
+.agenda-page{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+.agenda-page .page-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+
+    padding:26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(201,162,39,.10),
+            rgba(34,34,34,.75)
+        );
+
+    border:1px solid rgba(201,162,39,.16);
+    border-radius:20px;
+}
+
+.agenda-page .page-header h2{
+    color:var(--text);
+    font-size:28px;
+}
+
+.agenda-page .page-header p{
+    color:var(--text-secondary);
+    margin-top:6px;
+}
+
+.agenda-page .page-header .btn-primary{
+    width:auto;
+    min-width:220px;
+    padding:14px 22px;
+}
+
+/* BARRA DE FILTROS */
+
+.agenda-toolbar{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:22px;
+
+    padding:20px 22px;
+
+    background:linear-gradient(145deg,#202020,#181818);
+
+    border:1px solid var(--border);
+    border-radius:18px;
+}
+
+.agenda-data-filtro{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    width:260px;
+}
+
+.agenda-data-filtro label{
+    color:var(--text-secondary);
+    font-size:13px;
+}
+
+.agenda-data-filtro input{
+    margin:0;
+    min-height:48px;
+}
+
+/* RESUMO */
+
+.agenda-resumo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.agenda-resumo > div{
+    min-width:120px;
+    padding:12px 16px;
+
+    background:rgba(255,255,255,.025);
+
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:12px;
+}
+
+.agenda-resumo span{
+    display:block;
+    color:var(--text-secondary);
+    font-size:11px;
+}
+
+.agenda-resumo strong{
+    display:block;
+    color:var(--gold);
+    font-size:21px;
+    margin-top:3px;
+}
+
+/* LISTA */
+
+.agenda-lista-completa{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.agenda-lista-completa .empty-state{
+    padding:38px;
+
+    color:var(--text-secondary);
+    text-align:center;
+
+    background:var(--card);
+
+    border:1px dashed var(--border);
+    border-radius:18px;
+}
+
+/* CARD DE AGENDAMENTO */
+
+.agendamento-card{
+    display:grid;
+    grid-template-columns:
+        84px
+        minmax(190px,1.4fr)
+        minmax(140px,1fr)
+        minmax(150px,1fr)
+        auto
+        minmax(170px,auto);
+
+    align-items:center;
+    gap:18px;
+
+    padding:18px 20px;
+
+    background:linear-gradient(145deg,#202020,#181818);
+
+    border:1px solid var(--border);
+    border-left:4px solid var(--gold);
+    border-radius:18px;
+
+    transition:.2s ease;
+}
+
+.agendamento-card:hover{
+    transform:translateY(-2px);
+    border-color:rgba(212,175,55,.32);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.22);
+}
+
+.agendamento-horario{
+    color:var(--gold);
+    font-size:20px;
+    font-weight:800;
+}
+
+.agendamento-cliente{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width:0;
+}
+
+.agendamento-avatar{
+    width:44px;
+    height:44px;
+    min-width:44px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(212,175,55,.14);
+    border:1px solid rgba(212,175,55,.24);
+
+    color:var(--gold);
+    font-weight:800;
+}
+
+.agendamento-cliente h3{
+    color:var(--text);
+    font-size:14px;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.agendamento-cliente span{
+    display:block;
+    color:var(--text-secondary);
+    font-size:12px;
+    margin-top:3px;
+}
+
+.agendamento-servico,
+.agendamento-plano{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.agendamento-servico span,
+.agendamento-plano span{
+    color:var(--text-secondary);
+    font-size:11px;
+}
+
+.agendamento-servico strong,
+.agendamento-plano strong{
+    color:var(--text);
+    font-size:13px;
+}
+
+.agendamento-plano small{
+    color:var(--gold);
+    font-size:11px;
+}
+
+/* STATUS */
+
+.agendamento-status{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:7px 11px;
+
+    border-radius:999px;
+
+    font-size:11px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.agendamento-status.agendado{
+    color:#ffd65a;
+    background:rgba(255,193,7,.12);
+}
+
+.agendamento-status.confirmado{
+    color:#62d6ff;
+    background:rgba(52,152,219,.13);
+}
+
+.agendamento-status.em_atendimento{
+    color:#d8a7ff;
+    background:rgba(155,89,182,.15);
+}
+
+.agendamento-status.concluido{
+    color:#44e47c;
+    background:rgba(46,204,113,.14);
+}
+
+.agendamento-status.cancelado{
+    color:#ff756a;
+    background:rgba(192,57,43,.16);
+}
+
+/* AÇÕES */
+
+.agendamento-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+}
+
+.agendamento-actions button{
+    width:auto;
+    min-width:86px;
+
+    padding:9px 13px;
+
+    border-radius:10px;
+
+    background:transparent;
+    color:var(--gold);
+
+    border:1px solid rgba(212,175,55,.65);
+
+    font-size:12px;
+    font-weight:600;
+    cursor:pointer;
+
+    transition:.2s ease;
+}
+
+.agendamento-actions button:hover{
+    background:rgba(212,175,55,.12);
+    border-color:var(--gold);
+}
+
+.agendamento-actions .btn-danger-outline{
+    color:#ff756a;
+    border-color:rgba(231,76,60,.45);
+}
+
+.agendamento-actions .btn-danger-outline:hover{
+    color:#fff;
+    background:#c0392b;
+    border-color:#c0392b;
+}
+
+/* FORMULÁRIO DO MODAL */
+
+.agendamento-form{
+    display:flex;
+    flex-direction:column;
+    gap:17px;
+}
+
+.agendamento-form .form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.agendamento-form .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.agendamento-form label{
+    color:var(--text-secondary);
+    font-size:13px;
+}
+
+.agendamento-form input,
+.agendamento-form select,
+.agendamento-form textarea{
+    width:100%;
+    margin:0;
+    padding:12px 14px;
+
+    background:#151515;
+    color:var(--text);
+
+    border:1px solid var(--border);
+    border-radius:12px;
+
+    outline:none;
+    font-size:14px;
+}
+
+.agendamento-form textarea{
+    resize:vertical;
+    min-height:95px;
+}
+
+.agendamento-form input:focus,
+.agendamento-form select:focus,
+.agendamento-form textarea:focus{
+    border-color:var(--gold);
+
+    box-shadow:
+        0 0 0 3px rgba(201,162,39,.10);
+}
+
+.agendamento-form select option{
+    background:#171717;
+    color:var(--text);
+}
+
+.agendamento-form .form-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+}
+
+.agendamento-form .form-actions button{
+    width:auto;
+    min-width:150px;
+}
+
+/* CORES LATERAIS PELO STATUS */
+
+.agendamento-card.status-confirmado{
+    border-left-color:#3498db;
+}
+
+.agendamento-card.status-em_atendimento{
+    border-left-color:#9b59b6;
+}
+
+.agendamento-card.status-concluido{
+    border-left-color:#2ecc71;
+}
+
+.agendamento-card.status-cancelado{
+    border-left-color:#c0392b;
+    opacity:.75;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:1300px){
+    .agendamento-card{
+        grid-template-columns:
+            75px
+            minmax(180px,1.4fr)
+            minmax(120px,1fr)
+            minmax(130px,1fr);
+
+        grid-template-areas:
+            "hora cliente servico plano"
+            "status status actions actions";
+    }
+
+    .agendamento-horario{
+        grid-area:hora;
+    }
+
+    .agendamento-cliente{
+        grid-area:cliente;
+    }
+
+    .agendamento-servico{
+        grid-area:servico;
+    }
+
+    .agendamento-plano{
+        grid-area:plano;
+    }
+
+    .agendamento-status{
+        grid-area:status;
+        justify-self:start;
+    }
+
+    .agendamento-actions{
+        grid-area:actions;
+    }
+}
+
+@media(max-width:800px){
+    .agenda-page .page-header,
+    .agenda-toolbar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .agenda-page .page-header .btn-primary,
+    .agenda-data-filtro{
+        width:100%;
+    }
+
+    .agenda-resumo{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .agenda-resumo > div{
+        min-width:0;
+    }
+
+    .agendamento-card{
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .agendamento-actions{
+        justify-content:stretch;
+    }
+
+    .agendamento-actions button{
+        flex:1;
+    }
+
+    .agendamento-form .form-row{
+        grid-template-columns:1fr;
+    }
+
+
+    .agendamento-form .hidden{
+        display:none !important;
+    }
+
+.agenda-field-message{
+    display:block;
+    min-height:16px;
+    color:var(--text-secondary);
+    font-size:11px;
+    line-height:1.5;
+    }
+
+.agenda-field-message.aviso{
+    padding:10px 12px;
+    color:#ffd65a;
+    background:rgba(255,193,7,.07);
+    border:1px solid rgba(255,193,7,.16);
+    border-radius:10px;
+    }    
+
+
+
+}
+
+.agendamento-barbeiro{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:5px;
+    color:var(--gold);
+    font-size:11px;
+}
+
+.agendamento-barbeiro i{
+    font-size:10px;
+}
