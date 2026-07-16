@@ -28,6 +28,7 @@ async function salvarPlano() {
 
     fecharFormularioPlano();
     mostrarSecao("planos");
+    await mostrarSecao("planos");
 }
 
 async function atualizarListaPlanos() {
@@ -111,24 +112,18 @@ async function editarPlano(id) {
 
     abrirFormularioPlano();
 
-    document.getElementById("planoNome").value = plano.nome;
-    document.getElementById("planoDescricao").value = plano.descricao || "";
-    document.getElementById("planoValor").value = plano.valor;
-    document.getElementById("planoCortes").value = plano.quantidade_cortes;
-    document.getElementById("planoValidade").value = plano.validade_dias || 30;
-}
+    document.getElementById("planoNome").value =
+        plano.nome || "";
 
-async function removerPlano(id) {
-    const confirmar = confirm("Deseja realmente excluir este plano?");
+    document.getElementById("planoDescricao").value =
+        plano.descricao || "";
 
-    if (!confirmar) return;
+    document.getElementById("planoValor").value =
+        plano.valor || "";
 
-    const sucesso = await excluirPlano(id);
+    document.getElementById("planoCortes").value =
+        plano.quantidade_cortes || "";
 
-    if (!sucesso) {
-        alert("Erro ao excluir plano.");
-        return;
-    }
-
-    mostrarSecao("planos");
+    document.getElementById("planoValidade").value =
+        plano.validade_dias || 30;
 }

@@ -8,25 +8,14 @@ function carregarPlanos() {
                     <p>Gerencie os planos e assinaturas da sua barbearia.</p>
                 </div>
 
-                <button class="btn-primary" onclick="abrirFormularioPlano()">
+                <button
+                    type="button"
+                    class="btn-primary"
+                    onclick="abrirFormularioPlano()"
+                >
                     <i class="fa-solid fa-plus"></i>
                     Novo Plano
                 </button>
-            </div>
-
-            <div id="formPlano" class="form-card hidden">
-                <h3>Novo Plano</h3>
-
-                <input id="planoNome" placeholder="Nome do plano">
-                <input id="planoDescricao" placeholder="Descrição">
-                <input id="planoValor" type="number" step="0.01" placeholder="Valor mensal">
-                <input id="planoCortes" type="number" placeholder="Quantidade de cortes">
-                <input id="planoValidade" type="number" value="30" placeholder="Validade em dias">
-
-                <div class="form-actions">
-                    <button onclick="salvarPlano()">Salvar Plano</button>
-                    <button class="btn-secondary" onclick="fecharFormularioPlano()">Cancelar</button>
-                </div>
             </div>
 
             <div id="listaPlanos" class="planos-grid"></div>
@@ -36,18 +25,131 @@ function carregarPlanos() {
 }
 
 function abrirFormularioPlano() {
-    document.getElementById("formPlano").classList.remove("hidden");
+    abrirModal(
+        planoEditandoId
+            ? "Editar Plano"
+            : "Novo Plano",
+        `
+            <div class="plano-form">
+
+                <p class="modal-description">
+                    ${
+                        planoEditandoId
+                            ? "Atualize as informações deste plano."
+                            : "Crie um novo plano de assinatura para seus clientes."
+                    }
+                </p>
+
+                <div class="form-group">
+                    <label for="planoNome">Nome do plano</label>
+
+                    <input
+                        id="planoNome"
+                        type="text"
+                        placeholder="Ex.: Plano Premium"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="planoDescricao">Descrição</label>
+
+                    <textarea
+                        id="planoDescricao"
+                        rows="3"
+                        placeholder="Descreva os benefícios do plano..."
+                    ></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="planoValor">Valor mensal</label>
+
+                        <input
+                            id="planoValor"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="Ex.: 89,90"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="planoCortes">Quantidade de cortes</label>
+
+                        <input
+                            id="planoCortes"
+                            type="number"
+                            min="1"
+                            placeholder="Ex.: 4"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="planoValidade">Validade em dias</label>
+
+                    <input
+                        id="planoValidade"
+                        type="number"
+                        min="1"
+                        value="30"
+                        placeholder="Ex.: 30"
+                    >
+                </div>
+
+                <div class="form-actions plano-form-actions">
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        onclick="fecharFormularioPlano()"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        onclick="salvarPlano()"
+                    >
+                        <i class="fa-solid fa-check"></i>
+
+                        ${
+                            planoEditandoId
+                                ? "Salvar alterações"
+                                : "Salvar plano"
+                        }
+                    </button>
+                </div>
+
+            </div>
+        `
+    );
 }
 
 function fecharFormularioPlano() {
-    document.getElementById("formPlano").classList.add("hidden");
-    limparFormularioPlano();
+    planoEditandoId = null;
+    fecharModal();
 }
 
 function limparFormularioPlano() {
-    document.getElementById("planoNome").value = "";
-    document.getElementById("planoDescricao").value = "";
-    document.getElementById("planoValor").value = "";
-    document.getElementById("planoCortes").value = "";
-    document.getElementById("planoValidade").value = "30";
+    const campos = [
+        "planoNome",
+        "planoDescricao",
+        "planoValor",
+        "planoCortes"
+    ];
+
+    campos.forEach(id => {
+        const campo = document.getElementById(id);
+
+        if (campo) {
+            campo.value = "";
+        }
+    });
+
+    const validade = document.getElementById("planoValidade");
+
+    if (validade) {
+        validade.value = "30";
+    }
 }

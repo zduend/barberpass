@@ -1,0 +1,207 @@
+/* =========================================
+   CLIENTES
+========================================= */
+
+.cliente-mobile-identidade{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.cliente-mobile-avatar{
+    display:none;
+}
+
+.cliente-table-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.cliente-table-actions button{
+    width:auto;
+}
+
+/* =========================================
+   CLIENTES — MOBILE
+========================================= */
+
+@media(max-width:700px){
+    .page-header{
+        flex-direction:column;
+        align-items:stretch;
+        gap:18px;
+    }
+
+    .page-header > div{
+        width:100%;
+    }
+
+    .page-header h2{
+        font-size:23px;
+    }
+
+    .page-header p{
+        font-size:13px;
+        line-height:1.6;
+    }
+
+    .page-header .btn-primary{
+        width:100%;
+        min-height:48px;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+    }
+
+    .panel{
+        width:100%;
+        padding:14px;
+        overflow:visible;
+        border-radius:16px;
+    }
+
+    .toolbar{
+        width:100%;
+        margin-bottom:14px;
+    }
+
+    .toolbar input{
+        width:100%;
+        min-height:48px;
+        margin:0;
+    }
+
+    /*
+     * Transforma a tabela em cards.
+     */
+
+    .panel table{
+        display:block;
+        width:100%;
+        min-width:0;
+    }
+
+    .panel thead{
+        display:none;
+    }
+
+    .panel tbody{
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        width:100%;
+    }
+
+    .panel tbody tr{
+        display:flex;
+        flex-direction:column;
+        gap:0;
+
+        width:100%;
+        padding:16px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(34,34,34,.98),
+                rgba(24,24,24,.98)
+            );
+
+        border:1px solid var(--border);
+        border-radius:16px;
+
+        box-shadow:
+            0 10px 25px rgba(0,0,0,.16);
+    }
+
+    .panel tbody td{
+        width:100%;
+        padding:11px 0;
+
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:18px;
+
+        border:0;
+        border-bottom:1px solid rgba(255,255,255,.06);
+
+        color:var(--text);
+        font-size:13px;
+        text-align:right;
+    }
+
+    .panel tbody td::before{
+        content:attr(data-label);
+
+        color:var(--text-secondary);
+        font-size:11px;
+        font-weight:500;
+        text-align:left;
+    }
+
+    .panel tbody td:first-child{
+        padding-top:0;
+        padding-bottom:15px;
+    }
+
+    .panel tbody td:first-child::before{
+        display:none;
+    }
+
+    .panel tbody td:last-child{
+        padding-bottom:0;
+        border-bottom:0;
+    }
+
+    .cliente-mobile-identidade{
+        width:100%;
+        justify-content:flex-start;
+        text-align:left;
+    }
+
+    .cliente-mobile-identidade strong{
+        font-size:15px;
+    }
+
+    .cliente-mobile-avatar{
+        width:42px;
+        height:42px;
+        min-width:42px;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        border-radius:50%;
+
+        color:var(--gold);
+        background:rgba(212,175,55,.13);
+
+        border:1px solid rgba(212,175,55,.25);
+
+        font-weight:800;
+    }
+
+    .cliente-table-actions{
+        width:100%;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
+
+    .cliente-table-actions button{
+        width:100%;
+        min-height:42px;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:7px;
+
+        border-radius:10px;
+    }
+}

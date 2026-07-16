@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/topbar.css">
     <link rel="stylesheet" href="css/cards.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/clientes.css">
     <link rel="stylesheet" href="css/planos.css">
     <link rel="stylesheet" href="css/assinaturas.css">
     <link rel="stylesheet" href="css/agenda.css">
@@ -122,10 +123,27 @@
 
     </aside>
 
+    <div
+    id="sidebarOverlay"
+    class="sidebar-overlay"
+    onclick="fecharSidebarMobile()"
+></div>
+
     <main class="main-content">
 
         <header class="topbar">
-    <div class="topbar-page">
+        
+        <button
+    type="button"
+    class="mobile-menu-button"
+    onclick="alternarSidebarMobile()"
+    aria-label="Abrir menu"
+>
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+    
+            <div class="topbar-page">
         <h1 id="tituloPagina">Dashboard</h1>
         <p id="subtituloPagina">Bem-vindo novamente 👋</p>
     </div>

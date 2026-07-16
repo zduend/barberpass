@@ -261,3 +261,130 @@
 .dashboard-card-header button{
     width:auto !important;
 }
+
+@media (max-width: 700px) {
+    .dashboard-hero {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 22px;
+
+        padding: 26px 22px;
+        border-radius: 18px;
+        overflow: hidden;
+    }
+
+    .hero-text {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .hero-badge {
+        width: fit-content;
+        max-width: 100%;
+
+        padding: 7px 11px;
+        font-size: 11px;
+        gap: 7px;
+    }
+
+    .hero-text h1 {
+        margin-top: 18px;
+        font-size: clamp(29px, 9vw, 36px);
+        line-height: 1.15;
+        letter-spacing: -1px;
+        word-break: normal;
+    }
+
+    .hero-text p {
+        max-width: 100%;
+        margin-top: 14px;
+
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    .hero-date {
+        width: 100%;
+        min-width: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 14px;
+
+        padding: 16px;
+
+        position: static;
+        transform: none;
+    }
+
+    .hero-date i {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 20px;
+    }
+
+    .hero-date div {
+        min-width: 0;
+    }
+
+    .hero-date strong {
+        display: block;
+
+        font-size: 13px;
+        line-height: 1.4;
+
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .hero-date span {
+        display: block;
+        margin-top: 3px;
+        font-size: 11px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px;
+    }
+
+    .stat-card {
+        min-height: 155px;
+        padding: 22px;
+    }
+
+    .dashboard-main-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .clientes-dashboard-card,
+    .agenda-dashboard-card {
+        min-height: auto;
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .dashboard-card-header {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .dashboard-card-header h2 {
+        font-size: 18px;
+    }
+
+    .btn-outline-dashboard {
+        padding: 7px 10px;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+}

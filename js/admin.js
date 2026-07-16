@@ -36,6 +36,7 @@ async function mostrarSecao(secao) {
     }
 
     marcarMenuAtivo(secao);
+    fecharSidebarMobile();
 
     switch (secao) {
         
@@ -113,7 +114,7 @@ async function salvarCliente() {
 
     limparFormularioCliente();
     fecharFormularioCliente();
-    mostrarSecao("clientes");
+    await mostrarSecao("clientes");
 }
 
 async function atualizarTabelaClientes() {
@@ -139,17 +140,54 @@ async function atualizarTabelaClientes() {
     }
 
     lista.innerHTML = clientes.map(cliente => `
-        <tr>
-            <td>${cliente.nome}</td>
-            <td>${cliente.telefone}</td>
-            <td>${cliente.email || "-"}</td>
-            <td><span class="status ativo">${cliente.status}</span></td>
-            <td>
-                <button class="btn-small" onclick="editarCliente('${cliente.id}')">✏️</button>
-                <button class="btn-small btn-delete" onclick="removerCliente('${cliente.id}')">🗑</button>
-            </td>
-        </tr>
-    `).join("");
+    <tr>
+        <td data-label="Nome">
+            <div class="cliente-mobile-identidade">
+                <div class="cliente-mobile-avatar">
+                    ${cliente.nome?.charAt(0).toUpperCase() || "?"}
+                </div>
+
+                <strong>${cliente.nome}</strong>
+            </div>
+        </td>
+
+        <td data-label="Telefone">
+            ${cliente.telefone}
+        </td>
+
+        <td data-label="E-mail">
+            ${cliente.email || "-"}
+        </td>
+
+        <td data-label="Status">
+            <span class="status ativo">
+                ${cliente.status}
+            </span>
+        </td>
+
+        <td data-label="Ações">
+            <div class="cliente-table-actions">
+                <button
+                    type="button"
+                    class="btn-small"
+                    onclick="editarCliente('${cliente.id}')"
+                >
+                    <i class="fa-solid fa-pen"></i>
+                    Editar
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-small btn-delete"
+                    onclick="removerCliente('${cliente.id}')"
+                >
+                    <i class="fa-solid fa-trash"></i>
+                    Excluir
+                </button>
+            </div>
+        </td>
+    </tr>
+`).join("");
 }
 
 async function editarCliente(id) {
@@ -160,14 +198,21 @@ async function editarCliente(id) {
         return;
     }
 
-    abrirFormularioCliente();
-
     clienteEditandoId = id;
 
-    document.getElementById("clienteNome").value = cliente.nome;
-    document.getElementById("clienteTelefone").value = cliente.telefone;
-    document.getElementById("clienteEmail").value = cliente.email || "";
-    document.getElementById("clienteCpf").value = cliente.cpf || "";
+    abrirFormularioCliente();
+
+    document.getElementById("clienteNome").value =
+        cliente.nome || "";
+
+    document.getElementById("clienteTelefone").value =
+        cliente.telefone || "";
+
+    document.getElementById("clienteEmail").value =
+        cliente.email || "";
+
+    document.getElementById("clienteCpf").value =
+        cliente.cpf || "";
 }
 
 async function removerCliente(id) {
@@ -203,3 +248,31 @@ document.addEventListener("DOMContentLoaded", async function () {
     await verificarLogin();
     await mostrarSecao("dashboard");
 });
+
+function alternarSidebarMobile() {
+    const sidebar = document.querySelector(".sidebar");
+    const overlay = document.getElementById("sidebarOverlay");
+
+    if (!sidebar || !overlay) return;
+
+    const estaAberta = sidebar.classList.toggle("open");
+
+    overlay.classList.toggle("show", estaAberta);
+
+    document.body.classList.toggle(
+        "menu-mobile-open",
+        estaAberta
+    );
+}
+
+function fecharSidebarMobile() {
+    const sidebar = document.querySelector(".sidebar");
+    const overlay = document.getElementById("sidebarOverlay");
+
+    if (!sidebar || !overlay) return;
+
+    sidebar.classList.remove("open");
+    overlay.classList.remove("show");
+
+    document.body.classList.remove("menu-mobile-open");
+}

@@ -1065,3 +1065,34 @@ box-shadow:
 .agenda-item.livre{
     border-style:dashed;
 }
+
+@media(max-width:900px){
+    .admin-body{
+        display:block;
+    }
+
+    .main-content{
+        width:100%;
+        min-width:0;
+        margin-left:0;
+        padding:18px;
+    }
+}
+
+@media(max-width:600px){
+    .main-content{
+        padding:12px;
+    }
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+}
