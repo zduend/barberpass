@@ -1,0 +1,22 @@
+{
+    "name": "BarberPass",
+    "short_name": "BarberPass",
+    "description": "Sistema de gestão inteligente para barbearias.",
+    "start_url": "/login.html",
+    "display": "standalone",
+    "background_color": "#0F0F0F",
+    "theme_color": "#D4AF37",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/assets/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
