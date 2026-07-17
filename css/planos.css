@@ -154,3 +154,155 @@
         grid-template-columns:1fr;
     }
 }
+
+/* =========================================
+   PLANOS — CELULAR
+========================================= */
+
+@media (max-width:700px){
+
+    .planos-page{
+        width:100%;
+        gap:18px;
+    }
+
+    .planos-page .page-header{
+        width:100%;
+
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:16px;
+
+        padding:20px;
+        border-radius:16px;
+    }
+
+    .planos-page .page-header > div{
+        width:100%;
+    }
+
+    .planos-page .page-header h2{
+        font-size:23px;
+        line-height:1.25;
+    }
+
+    .planos-page .page-header p{
+        margin-top:6px;
+
+        font-size:13px;
+        line-height:1.6;
+    }
+
+    .planos-page .page-header .btn-primary{
+        width:100%;
+        min-height:48px;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+    }
+
+    .planos-grid{
+        width:100%;
+        grid-template-columns:1fr !important;
+        gap:14px;
+    }
+
+    .plano-card{
+        width:100%;
+        min-width:0;
+
+        padding:20px;
+        border-radius:17px;
+    }
+
+    .plano-card-top{
+        margin-bottom:16px;
+    }
+
+    .plano-icon{
+        width:50px;
+        height:50px;
+        min-width:50px;
+
+        font-size:21px;
+    }
+
+    .plano-card h3{
+        font-size:20px;
+        line-height:1.3;
+
+        overflow-wrap:anywhere;
+    }
+
+    .plano-card p{
+        min-height:auto;
+
+        font-size:13px;
+        line-height:1.65;
+    }
+
+    .plano-preco{
+        margin:17px 0;
+
+        font-size:29px;
+        line-height:1.2;
+    }
+
+    .plano-preco small{
+        font-size:11px;
+    }
+
+    .plano-info{
+        gap:11px;
+        margin-bottom:18px;
+    }
+
+    .plano-info span{
+        font-size:13px;
+    }
+
+    .plano-actions{
+        width:100%;
+
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
+
+    .plano-actions button{
+        width:100%;
+        min-height:43px;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        border-radius:10px;
+    }
+
+    .planos-grid .empty-state{
+        width:100%;
+        padding:28px 20px;
+
+        font-size:13px;
+        line-height:1.6;
+    }
+}
+
+@media (max-width:420px){
+
+    .planos-page .page-header{
+        padding:18px;
+    }
+
+    .plano-card{
+        padding:18px;
+    }
+
+    .plano-actions{
+        grid-template-columns:1fr;
+    }
+}

@@ -262,129 +262,310 @@
     width:auto !important;
 }
 
-@media (max-width: 700px) {
-    .dashboard-hero {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 22px;
+/* =========================================
+   DASHBOARD — CELULAR
+========================================= */
 
-        padding: 26px 22px;
-        border-radius: 18px;
-        overflow: hidden;
+@media (max-width:700px){
+
+    /* HERO */
+
+    .dashboard-hero{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:20px;
+
+        padding:24px 20px;
+        border-radius:18px;
+        overflow:hidden;
     }
 
-    .hero-text {
-        width: 100%;
-        min-width: 0;
+    .hero-text{
+        width:100%;
+        min-width:0;
     }
 
-    .hero-badge {
-        width: fit-content;
-        max-width: 100%;
+    .hero-badge{
+        width:max-content;
+        max-width:100%;
 
-        padding: 7px 11px;
-        font-size: 11px;
-        gap: 7px;
+        padding:7px 11px;
+        gap:7px;
+
+        font-size:10px;
+        white-space:nowrap;
     }
 
-    .hero-text h1 {
-        margin-top: 18px;
-        font-size: clamp(29px, 9vw, 36px);
-        line-height: 1.15;
-        letter-spacing: -1px;
-        word-break: normal;
+    .hero-text h1{
+        width:100%;
+        margin-top:17px;
+
+        font-size:30px;
+        line-height:1.18;
+        letter-spacing:-.8px;
+
+        word-break:normal;
+        overflow-wrap:normal;
     }
 
-    .hero-text p {
-        max-width: 100%;
-        margin-top: 14px;
+    .hero-text p{
+        width:100%;
+        max-width:none;
 
-        font-size: 14px;
-        line-height: 1.65;
+        margin-top:13px;
+
+        font-size:13px;
+        line-height:1.65;
     }
 
-    .hero-date {
-        width: 100%;
-        min-width: 0;
+    .hero-date{
+        position:static;
+        transform:none;
 
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 14px;
+        width:100%;
+        min-width:0;
 
-        padding: 16px;
+        display:flex;
+        align-items:center;
+        justify-content:flex-start;
+        gap:13px;
 
-        position: static;
-        transform: none;
+        padding:14px;
+
+        border-radius:14px;
     }
 
-    .hero-date i {
-        width: 42px;
-        height: 42px;
-        min-width: 42px;
+    .hero-date i{
+        width:42px;
+        height:42px;
+        min-width:42px;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display:flex;
+        align-items:center;
+        justify-content:center;
 
-        font-size: 20px;
+        font-size:18px;
     }
 
-    .hero-date div {
-        min-width: 0;
+    .hero-date div{
+        min-width:0;
     }
 
-    .hero-date strong {
-        display: block;
+    .hero-date strong{
+        display:block;
 
-        font-size: 13px;
-        line-height: 1.4;
+        font-size:12px;
+        line-height:1.45;
 
-        white-space: normal;
-        overflow-wrap: anywhere;
+        white-space:normal;
+        text-transform:capitalize;
     }
 
-    .hero-date span {
-        display: block;
-        margin-top: 3px;
-        font-size: 11px;
+    .hero-date span{
+        display:block;
+        margin-top:3px;
+        font-size:10px;
     }
 
-    .stats-grid {
-        grid-template-columns: 1fr !important;
-        gap: 14px;
+    /* CARDS DE ESTATÍSTICAS */
+
+    .stats-grid{
+        width:100%;
+        grid-template-columns:1fr !important;
+        gap:14px;
     }
 
-    .stat-card {
-        min-height: 155px;
-        padding: 22px;
+    .stat-card{
+        width:100%;
+        min-height:140px;
+
+        padding:20px;
+        border-radius:16px;
     }
 
-    .dashboard-main-grid {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
+    /* PAINÉIS INFERIORES */
+
+    .dashboard-main-grid{
+        width:100%;
+        grid-template-columns:1fr !important;
+        gap:16px !important;
+        margin-top:16px;
     }
 
     .clientes-dashboard-card,
-    .agenda-dashboard-card {
-        min-height: auto;
-        padding: 20px;
-        border-radius: 16px;
+    .agenda-dashboard-card{
+        width:100%;
+        min-width:0;
+        min-height:auto;
+
+        padding:18px;
+        gap:15px;
+
+        border-radius:16px;
+        overflow:hidden;
     }
 
-    .dashboard-card-header {
-        align-items: flex-start;
-        gap: 12px;
+    .dashboard-card-header{
+        width:100%;
+
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+
+        margin-bottom:2px;
     }
 
-    .dashboard-card-header h2 {
-        font-size: 18px;
+    .dashboard-card-header h2{
+        min-width:0;
+        font-size:17px;
+        line-height:1.3;
     }
 
-    .btn-outline-dashboard {
-        padding: 7px 10px;
-        font-size: 11px;
-        white-space: nowrap;
+    .btn-outline-dashboard{
+        flex-shrink:0;
+
+        padding:7px 9px;
+        font-size:10px;
+
+        white-space:nowrap;
+    }
+
+    /* ÚLTIMOS CLIENTES */
+
+    .cliente-dashboard-row{
+        width:100%;
+        gap:10px;
+        padding:13px 0;
+    }
+
+    .cliente-dashboard-info{
+        min-width:0;
+        gap:10px;
+    }
+
+    .dashboard-avatar{
+        width:36px;
+        height:36px;
+        min-width:36px;
+    }
+
+    .cliente-dashboard-texto{
+        min-width:0;
+    }
+
+    .cliente-dashboard-texto strong,
+    .cliente-dashboard-texto span{
+        display:block;
+
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+    }
+
+    .cliente-dashboard-texto strong{
+        font-size:13px;
+    }
+
+    .cliente-dashboard-texto span{
+        font-size:11px;
+    }
+
+    .dashboard-status{
+        flex-shrink:0;
+        padding:5px 8px;
+        font-size:10px;
+    }
+
+    /* AGENDA DO DASHBOARD */
+
+    .agenda-dashboard-row,
+    .agenda-dashboard-agendada{
+        width:100%;
+
+        display:grid !important;
+        grid-template-columns:52px minmax(0, 1fr);
+        gap:10px;
+
+        padding:14px 0;
+    }
+
+    .agenda-dashboard-row .agendamento-status{
+        grid-column:2;
+        justify-self:start;
+    }
+
+    .agenda-hora{
+        font-size:13px;
+    }
+
+    .agenda-cliente-dashboard{
+        min-width:0;
+        gap:9px;
+    }
+
+    .agenda-avatar-dashboard{
+        width:34px;
+        height:34px;
+        min-width:34px;
+    }
+
+    .agenda-cliente-dashboard strong{
+        font-size:12px;
+    }
+
+    .agenda-cliente-dashboard span{
+        font-size:10px;
+    }
+
+    /* BOTÕES INFERIORES */
+
+    .btn-full-dashboard{
+        width:100% !important;
+        min-height:46px;
+
+        padding:12px;
+        font-size:12px;
+    }
+
+    /* ESTADO VAZIO */
+
+    .dashboard-empty-state{
+        min-height:150px;
+        padding:20px;
+    }
+
+    .dashboard-empty-state i{
+        font-size:24px;
+    }
+}
+
+@media (max-width:420px){
+
+    .dashboard-hero{
+        padding:22px 18px;
+    }
+
+    .hero-text h1{
+        font-size:28px;
+    }
+
+    .dashboard-card-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .dashboard-card-header .btn-outline-dashboard{
+        width:100% !important;
+    }
+
+    .cliente-dashboard-row{
+        align-items:flex-start;
+    }
+
+    .dashboard-status{
+        margin-top:4px;
     }
 }

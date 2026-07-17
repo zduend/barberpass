@@ -246,3 +246,33 @@
         width:100%;
     }
 }
+
+@media (max-width:600px){
+
+    .plano-form{
+        width:100%;
+    }
+
+    .plano-form .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .plano-form input,
+    .plano-form textarea{
+        width:100%;
+        min-width:0;
+    }
+
+    .plano-form-actions{
+        width:100%;
+
+        display:flex;
+        flex-direction:column-reverse;
+        gap:10px;
+    }
+
+    .plano-form-actions button{
+        width:100%;
+        min-height:48px;
+    }
+}

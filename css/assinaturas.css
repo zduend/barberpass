@@ -592,3 +592,148 @@
     background:#c0392b;
     color:#fff;
 }
+
+/* =========================================
+   ASSINATURAS - MOBILE PREMIUM
+========================================= */
+
+@media (max-width:700px){
+
+    .assinaturas-page{
+
+        gap:18px;
+    }
+
+
+    .assinaturas-page .page-header{
+
+        width:100%;
+        padding:20px;
+
+        gap:16px;
+    }
+
+
+    .assinaturas-page .page-header h2{
+
+        font-size:24px;
+    }
+
+
+    .assinaturas-page .page-header p{
+
+        font-size:13px;
+        line-height:1.6;
+    }
+
+
+    .assinaturas-page .btn-primary{
+
+        width:100%;
+        min-height:48px;
+    }
+
+
+    .assinatura-card{
+
+        padding:20px;
+        gap:18px;
+
+        border-radius:18px;
+    }
+
+
+    .assinatura-card-header{
+
+        align-items:flex-start;
+    }
+
+
+    .assinatura-cliente h3{
+
+        font-size:15px;
+    }
+
+
+    .assinatura-cliente span{
+
+        font-size:11px;
+    }
+
+
+    .dashboard-status{
+
+        font-size:10px;
+        padding:5px 8px;
+    }
+
+
+    .assinatura-plano{
+
+        padding:14px;
+    }
+
+
+    .assinatura-plano strong{
+
+        font-size:13px;
+    }
+
+
+    .assinatura-cortes-topo span{
+
+        font-size:12px;
+    }
+
+
+    .assinatura-cortes-topo strong{
+
+        font-size:14px;
+    }
+
+
+    .assinatura-datas{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .assinatura-datas div{
+
+        padding:14px;
+    }
+
+
+    .assinatura-datas strong{
+
+        font-size:14px;
+    }
+
+
+    .assinatura-actions{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .btn-registrar-corte{
+
+        width:100%;
+        min-height:48px;
+    }
+
+
+    .btn-assinatura-excluir{
+
+        width:100%;
+        min-height:48px;
+    }
+
+
+    .assinatura-aviso{
+
+        line-height:1.6;
+        align-items:flex-start;
+    }
+
+}

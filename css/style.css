@@ -1096,3 +1096,139 @@ svg,
 video {
     max-width: 100%;
 }
+
+/* =========================================
+   LOGIN MOBILE — TELA CHEIA
+========================================= */
+
+@media (max-width: 700px) {
+    html,
+    body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .login-body {
+        width: 100%;
+        min-height: 100dvh;
+
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+
+        padding: 0;
+        margin: 0;
+
+        overflow-x: hidden;
+    }
+
+    .login-card-premium {
+        width: 100%;
+        max-width: none;
+        min-height: 100dvh;
+
+        margin: 0;
+        padding:
+            max(32px, env(safe-area-inset-top))
+            24px
+            max(24px, env(safe-area-inset-bottom));
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(8, 8, 8, .97),
+                rgba(18, 18, 18, .99)
+            );
+    }
+
+    .mascote-area {
+        display: flex;
+        justify-content: center;
+    }
+
+    .mascote-area img {
+        width: 112px;
+        height: 112px;
+        object-fit: contain;
+    }
+
+    .brand-area {
+        margin-top: 14px;
+        text-align: center;
+    }
+
+    .brand-area h1 {
+        font-size: 30px;
+        line-height: 1.1;
+    }
+
+    .brand-area p {
+        margin-top: 6px;
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .welcome-area {
+        margin-top: 26px;
+        text-align: center;
+    }
+
+    .welcome-area h2 {
+        font-size: 22px;
+    }
+
+    .welcome-area p {
+        margin-top: 6px;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .input-group {
+        width: 100%;
+        min-height: 52px;
+        margin-top: 14px;
+    }
+
+    .input-group input {
+        width: 100%;
+        min-height: 52px;
+        font-size: 16px;
+    }
+
+    .login-btn {
+        width: 100%;
+        min-height: 52px;
+
+        margin-top: 18px;
+
+        border-radius: 14px;
+
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    #mensagem {
+        min-height: 18px;
+        margin-top: 12px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .login-card-premium footer {
+        margin-top: 28px;
+        text-align: center;
+        font-size: 10px;
+        line-height: 1.5;
+    }
+}
