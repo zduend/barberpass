@@ -28,8 +28,10 @@ async function sair() {
     window.location.href = "login.html";
 }
 
-async function mostrarSecao(secao) {
+async function mostrarSecao(secao, adicionarHistorico = true) {
     const conteudo = document.getElementById("conteudo");
+
+    if (!conteudo) return;
 
     if (typeof atualizarTopbar === "function") {
         atualizarTopbar(secao);
@@ -38,18 +40,17 @@ async function mostrarSecao(secao) {
     marcarMenuAtivo(secao);
     fecharSidebarMobile();
 
-    switch (secao) {
-        
-        case "agenda":
-            conteudo.innerHTML = carregarAgenda();
-            atualizarAgenda();
-            break;
-        
-        case "assinaturas":
-            conteudo.innerHTML = carregarAssinaturas();
-            atualizarListaAssinaturas();
-            break;
+    if (adicionarHistorico) {
+        const novaUrl = `${window.location.pathname}?secao=${secao}`;
 
+        history.pushState(
+            { secao },
+            "",
+            novaUrl
+        );
+    }
+
+    switch (secao) {
         case "dashboard":
             conteudo.innerHTML = await carregarDashboard();
             break;
@@ -64,24 +65,38 @@ async function mostrarSecao(secao) {
             atualizarListaPlanos();
             break;
 
+        case "assinaturas":
+            conteudo.innerHTML = carregarAssinaturas();
+            atualizarListaAssinaturas();
+            break;
+
+        case "agenda":
+            conteudo.innerHTML = carregarAgenda();
+            atualizarAgenda();
+            break;
+
         case "cortes":
-            conteudo.innerHTML = "<h2>Cortes</h2><p>Tela de cortes em construção.</p>";
+            conteudo.innerHTML =
+                "<h2>Cortes</h2><p>Tela de cortes em construção.</p>";
             break;
 
         case "financeiro":
-            conteudo.innerHTML = "<h2>Financeiro</h2><p>Tela financeira em construção.</p>";
+            conteudo.innerHTML =
+                "<h2>Financeiro</h2><p>Tela financeira em construção.</p>";
             break;
 
         case "relatorios":
-            conteudo.innerHTML = "<h2>Relatórios</h2><p>Tela de relatórios em construção.</p>";
+            conteudo.innerHTML =
+                "<h2>Relatórios</h2><p>Tela de relatórios em construção.</p>";
             break;
 
         case "configuracoes":
-            conteudo.innerHTML = "<h2>Configurações</h2><p>Tela de configurações em construção.</p>";
+            conteudo.innerHTML =
+                "<h2>Configurações</h2><p>Tela de configurações em construção.</p>";
             break;
 
         default:
-            conteudo.innerHTML = "<h2>Página em construção</h2>";
+            await mostrarSecao("dashboard", false);
     }
 }
 
@@ -246,7 +261,34 @@ function marcarMenuAtivo(secao) {
 
 document.addEventListener("DOMContentLoaded", async function () {
     await verificarLogin();
-    await mostrarSecao("dashboard");
+
+    const parametros = new URLSearchParams(
+        window.location.search
+    );
+
+    const secaoInicial =
+        parametros.get("secao") || "dashboard";
+
+    history.replaceState(
+        { secao: secaoInicial },
+        "",
+        `${window.location.pathname}?secao=${secaoInicial}`
+    );
+
+    await mostrarSecao(secaoInicial, false);
+});
+
+window.addEventListener("popstate", async function (event) {
+    const parametros = new URLSearchParams(
+        window.location.search
+    );
+
+    const secao =
+        event.state?.secao ||
+        parametros.get("secao") ||
+        "dashboard";
+
+    await mostrarSecao(secao, false);
 });
 
 function alternarSidebarMobile() {
