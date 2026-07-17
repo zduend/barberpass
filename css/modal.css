@@ -276,3 +276,47 @@
         min-height:48px;
     }
 }
+
+@media (max-width: 700px) {
+    .modal {
+        align-items: flex-start;
+        justify-content: center;
+
+        padding: 12px;
+        overflow-y: auto;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+
+        max-height: calc(100dvh - 24px);
+
+        margin: 0;
+        border-radius: 18px;
+
+        display: flex;
+        flex-direction: column;
+
+        overflow: hidden;
+    }
+
+    .modal-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        flex-shrink: 0;
+
+        background: #1c1c1c;
+    }
+
+    .modal-body {
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    .modal-close {
+        flex-shrink: 0;
+    }
+}
