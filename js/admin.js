@@ -74,6 +74,11 @@ async function mostrarSecao(secao, adicionarHistorico = true) {
             conteudo.innerHTML = carregarAgenda();
             atualizarAgenda();
             break;
+        
+        case "barbeiros":
+            conteudo.innerHTML = carregarBarbeiros();
+            atualizarListaBarbeiros();
+            break;
 
         case "cortes":
             conteudo.innerHTML =

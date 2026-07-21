@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="css/planos.css">
     <link rel="stylesheet" href="css/assinaturas.css">
     <link rel="stylesheet" href="css/agenda.css">
+    <link rel="stylesheet" href="css/barbeiros.css">
     <link rel="stylesheet" href="css/modal.css">
     <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -113,6 +114,11 @@
             <a href="#" onclick="mostrarSecao('agenda')">
                 <i class="fa-regular fa-calendar"></i>
                 Agenda
+            </a>
+
+            <a href="#" onclick="mostrarSecao('barbeiros')">
+                <i class="fa-solid fa-user-tie"></i>
+                Barbeiros
             </a>
 
             <a href="#" onclick="mostrarSecao('cortes')">
@@ -210,7 +216,10 @@
 <script src="js/controllers/planosController.js"></script>
 <script src="js/controllers/assinaturasController.js"></script>
 <script src="js/services/barbeirosService.js"></script>
+<script src="js/views/barbeiros.js"></script>
+<script src="js/controllers/barbeirosController.js"></script>
 <script src="js/controllers/agendaController.js"></script>
+
 
 <script src="js/admin.js"></script>
 <script src="js/pwa.js"></script>

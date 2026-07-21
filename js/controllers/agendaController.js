@@ -699,18 +699,20 @@ async function concluirAtendimento(
         }
 
         const receitaCriada = await registrarReceita({
-            data: agendamento.data,
-            categoria: "corte_avulso",
-            descricao:
-                `${agendamento.servico} - atendimento avulso`,
-            valor,
-            formaPagamento:
-                agendamento.forma_pagamento,
-            clienteId:
-                agendamento.cliente_id,
-            agendamentoId:
-                agendamento.id
-        });
+    data: agendamento.data,
+    categoria: "corte_avulso",
+    descricao:
+        `${agendamento.servico} - atendimento avulso`,
+    valor,
+    formaPagamento:
+        agendamento.forma_pagamento,
+    clienteId:
+        agendamento.cliente_id,
+    agendamentoId:
+        agendamento.id,
+    barbeiroId:
+        agendamento.barbeiro_id
+});
 
         if (!receitaCriada) {
             alert(

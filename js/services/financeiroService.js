@@ -56,7 +56,8 @@ async function registrarReceita({
     formaPagamento = null,
     clienteId = null,
     assinaturaId = null,
-    agendamentoId = null
+    agendamentoId = null,
+    barbeiroId = null
 }) {
     return cadastrarMovimentacaoFinanceira({
         data,
@@ -67,7 +68,8 @@ async function registrarReceita({
         forma_pagamento: formaPagamento,
         cliente_id: clienteId,
         assinatura_id: assinaturaId,
-        agendamento_id: agendamentoId
+        agendamento_id: agendamentoId,
+        barbeiro_id: barbeiroId
     });
 }
 
